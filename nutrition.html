@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>My Page</title>
+    </header>
+    <body>
+        <h1>Welcome to nutrition tracker</h1>
+        <p>Enter names in the fields, then click "Submit" to submit the form:</p>
+
+        <form id="frm1" action="/action_page.php">
+            Name: <input type="text" name="name"><br>
+            Age: <input type="text" name="age"><br>
+            Gender: Male<input type="radio" name="gender" id="Male">  Female<input type="radio" name="Gender" id="Female" ><br> 
+            Height(cm) : <input type="text" name="height"><br>
+            Weight(kg) : <input type="text" name="Weight"><br>
+            Activity: Sedentary<input type="radio" name="activity" id="Sedentary">  Moderately active<input type="radio" name="activity" id="moderate" >  Very active<input type="radio" name="activity" id="active"><br> 
+            <input type="button" onclick="myFunction()" value="Submit">
+        </form>
+        <br><br><br>
+        <h2>Food item :</h2>
+        <form id="frm2" action="/action_page.php">
+            BREAKFAST
+            Calories : <input type="number" name="cals1">
+            Proteins : <input type="number" name="proteins1">
+            Fats     : <input type="number" name="fats1">
+            <br>
+            LUNCH
+            Calories : <input type="number" name="cals2">
+            Proteins : <input type="number" name="proteins2">
+            Fats     : <input type="number" name="fats2">
+            <br>
+            DINNER
+            Calories : <input type="number" name="cals3">
+            Proteins : <input type="number" name="proteins3">
+            Fats     : <input type="number" name="fats3">
+            <input type="button" onclick="myFunc()" value="Submit">
+            </form>
+
+        <script>
+            var proteinreq,caloriesreq,fatsreq,bmr;
+            function myFunction()
+            {
+            alert("IN");
+
+                var x = document.getElementById("frm1");
+                proteinreq=0.8*x.elements[5].value;
+               
+                if(document.getElementById("Male").checked)
+                {
+                    bmr= 66+(13.7*x.elements[5].value)+(5*x.elements[4].value )-(6.8*x.elements[1].value);
+                   
+                    if(document.getElementById("Sedentary").checked)
+                    caloriesreq=bmr*1.2;
+                    else if(document.getElementById("moderate").checked)
+                    caloriesreq=bmr*1.55;
+                    else if(document.getElementById("active").checked)
+                    caloriesreq=bmr*1.725;
+                }
+                else if(document.getElementById("Female").checked)
+                {
+                    bmr= 655.1+(9.563*x.elements[5].value)+(1.85*x.elements[4].value)-(4.676*x.elements[1].value);
+                
+                    if(document.getElementById("Sedentary").checked)
+                    caloriesreq=bmr*1.2;
+                    else if(document.getElementById("moderate").checked)
+                    caloriesreq=bmr*1.55;
+                    else if(document.getElementById("active").checked)
+                    caloriesreq=bmr*1.725;
+                }
+                fatsreq=caloriesreq*0.25/8;
+            }  
+        var cal,pro,fat;
+        function myFunc()
+        {
+         alert("IN");
+        var y = document.getElementById("frm2")
+        cal=0;
+        pro=0;
+        fat=0;
+        var a= y.elements[0].value;
+        var b= y.elements[3].value;
+        var c= y.elements[6].value;
+        cal=+a + +b + +c;
+        
+        var a1= y.elements[1].value;
+        var b1= y.elements[4].value;
+        var c1= y.elements[7].value;
+        
+        var a2= y.elements[2].value;
+        var b2= y.elements[5].value;
+        var c2= y.elements[8].value;
+        
+        pro=+a1 + +b1 + +c1;
+        fat=+a2 + +b2 + +c2;
+        if(cal>caloriesreq)
+               {
+                   document.write("You are eating more than your required calorie amounts. Cut down on your carbs. Excess calories = ");
+                   document.write(+cal-caloriesreq);
+                   document.write("<br>");
+               }
+               else if(cal<caloriesreq)
+               {
+                   document.write("You are maintaing a calorific deficit of ");
+                   document.write(+caloriesreq-cal);
+                   document.write("<br>");
+               }
+
+               if(pro>proteinreq)
+               {
+                   document.write("Are you body building? Excess protein consumed = ");
+                   document.write(+pro-proteinreq);
+                   document.write("<br>");
+               }
+               else if(pro<proteinreq)
+               {
+                   document.write("You are not consuming enough protein for one day. Pls make sure that you add ");
+                   document.write(+proteinreq-pro);
+                   document.write("<br>");
+               }
+
+               if(fat>fatsreq)
+               {
+                   document.write("You are eating more than your required fat amounts. Cut down on your. Excess fat inatke = ");
+                   document.write(+fat-fatsreq);
+                   document.write("<br>");
+               }
+               else if(fat<fatsreq)
+               {
+                   document.write("You are maintaing a fat deficit of ");
+                   document.write(+fatsreq-fat);
+                   document.write("<br>");
+               }
+        }       
+        </script>
+    </body>
+    <footer>
+        Hope this solves the problem of Sai and Pai
+    </footer>
+</html>
